@@ -12,7 +12,13 @@ const AppRouter = () => {
           return  <Route 
             key={path}
             path={path}
-            element={element}
+            element={(
+                <Suspense fallback={<h2>Loading...</h2>}>
+                    <div className="page-wrapper">
+                    {element}
+                    </div>
+                </Suspense>
+            )}
             />
         })}
       </Routes>
