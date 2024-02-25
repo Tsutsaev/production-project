@@ -12,7 +12,9 @@
       "*":["./src/*"]
     },
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    ///
+    "strictNullChecks": false
   },
   "include": ["**/*.ts", "**/*.tsx", ".eslintrc.js"],
   "ts-node": {
