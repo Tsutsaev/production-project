@@ -10,7 +10,9 @@
     "build:dev": "webpack  --env mode=development",
     "unit": "jest --config ./config/jest/jest.config.ts",
     "lint:ts": "npx eslint \"**/*.{ts,tsx}\"",
-    "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix"
+    "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
+    "lint:scss": "npx stylelint \"**/*.scss\"",
+    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix"
   },
   "keywords": [],
   "author": "",
@@ -50,6 +52,9 @@
     "sass-loader": "^14.1.0",
     "style-loader": "^3.3.4",
     "stylelint": "^16.2.1",
+    "stylelint-config-idiomatic-order": "^10.0.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^36.0.0",
     "stylelint-config-standard-scss": "^13.0.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
@@ -66,6 +71,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.22.0"
+    "react-router-dom": "^6.22.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-order": "^6.0.4",
+    "stylelint-prettier": "^5.0.0",
+    "stylelint-scss": "^6.1.0"
   }
 }
