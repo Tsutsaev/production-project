@@ -16,10 +16,10 @@
     ///
     "strictNullChecks": false
   },
-  "include": ["**/*.ts", "**/*.tsx", ".eslintrc.js"],
   "ts-node": {
       "compilerOptions": {
         "module": "CommonJS"
       }
-    }
-}
+    },
+    "include": ["**/*.ts", "**/*.tsx", ".eslintrc.js", "./config/jest/setupTests.ts"],
+  }
