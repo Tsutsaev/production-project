@@ -9,16 +9,6 @@ export function buildPlugins({
     isDev,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
     const plugins = [
-        // {
-        //     // compiler
-        //     apply: (compiler) => {
-        //         compiler.hooks.done.tap('DonePlugin', (state) => {
-        //             setTimeout(() => {
-        //                 process.exit(0)
-        //             })
-        //         })
-        //     },
-        // },
         new HtmlWebpackPlugin({
             template: paths.html,
         }),
