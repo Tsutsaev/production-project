@@ -13,6 +13,7 @@
     "test:ui:ok": "npx loki approve",
     "lint:ts": "npx eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
+    "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
@@ -85,6 +86,7 @@
   "dependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "classnames": "^2.5.1",
+    "docker": "^1.0.0",
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.3",

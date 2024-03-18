@@ -6,9 +6,10 @@ on:
     branches: [main]
 jobs:
   pipeline:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [macos-latest]
         node-version: [19.x]
 
     steps:
@@ -25,3 +26,7 @@ jobs:
         run: npm run lint:ts
       - name: unit testing
         run: npm run test:unit
+      - name: build storybook
+        run: npm run storybook:build
+      - name: screenshot testing
+        run: npm run test:ui:ci
