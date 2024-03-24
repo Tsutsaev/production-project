@@ -27,6 +27,15 @@ export const Clear: Story = {
 }
 Clear.decorators = [ThemeDecorator(Theme.LIGHT)]
 
+export const ClearInverted: Story = {
+    args: {
+        children: 'Text',
+        theme: ButtonTheme.CLEAR_INVERTED,
+    },
+    render: (args) => <Button {...args} />,
+}
+ClearInverted.decorators = [ThemeDecorator(Theme.LIGHT)]
+
 export const Outlined: Story = {
     args: {
         children: 'Text',
