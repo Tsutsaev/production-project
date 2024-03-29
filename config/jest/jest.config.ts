@@ -17,6 +17,9 @@ const config: Config = {
     // cacheDirectory: "/private/var/folders/d_/pf1lv5cj4cb75x3vk422wzd00000gn/T/jest_dx",
 
     // Automatically clear mock calls, instances, contexts and results before every test
+    globals: {
+        __IS_DEV__: true,
+    },
     clearMocks: true,
     testEnvironment: 'jsdom',
     coveragePathIgnorePatterns: ['/node_modules/'],
