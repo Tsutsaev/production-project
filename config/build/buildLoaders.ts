@@ -1,4 +1,4 @@
-import type webpack from 'webpack'
+import  webpack from 'webpack'
 import { type BuildOptions } from './types/config'
 import { buildCssLoader } from './loaders/buildCssLoader'
 
