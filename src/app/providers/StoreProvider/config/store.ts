@@ -1,21 +1,26 @@
 import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
 import { type StateSchema } from './StateSchema';
-import { loginReducer } from 'features/AuthByUserName';
-import { counterReducer } from 'entities/Counter';
+import { createReducerManager } from 'app/providers/StoreProvider/config/reducerManager';
 
-export function createReduxStore(initialState?: StateSchema) {
-    const rootReducer: ReducersMapObject<StateSchema> = {
-        counter: counterReducer,
+export function createReduxStore(
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
+) {
+    const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
         user: userReducer,
-        loginForm: loginReducer,
     };
-
-    return configureStore({
-        reducer: rootReducer,
+    const reducerManager = createReducerManager(rootReducers);
+    const store = configureStore({
+        reducer: reducerManager.reduce,
         devTools: __IS_DEV__,
         preloadedState: initialState,
     });
+
+    // @ts-ignore
+    store.reducerManager = reducerManager;
+    return store;
 }
 
 // Создаем временный store для получения типов RootState и AppDispatch

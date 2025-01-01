@@ -1,5 +1,5 @@
-import { ThemeProvider, type Theme } from 'app/providers/ThemeProvider'
-import { type StoryFn } from '@storybook/react'
+import { ThemeProvider, type Theme } from 'app/providers/ThemeProvider';
+import { type StoryFn } from '@storybook/react';
 
 // eslint-disable-next-line react/display-name
 export const ThemeDecorator = (theme: Theme) => (Story: StoryFn) => (
@@ -8,4 +8,4 @@ export const ThemeDecorator = (theme: Theme) => (Story: StoryFn) => (
             <Story />
         </div>
     </ThemeProvider>
-)
+);

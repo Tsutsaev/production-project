@@ -1,7 +1,7 @@
-import { routeConfig } from 'shared/config/routeConfig/routeConfig'
-import { Routes, Route } from 'react-router-dom'
-import { Suspense } from 'react'
-import { PageLoader } from 'shared/ui/PageLoader/PageLoader'
+import { routeConfig } from 'shared/config/routeConfig/routeConfig';
+import { Routes, Route } from 'react-router-dom';
+import { Suspense } from 'react';
+import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 
 const AppRouter = () => {
     return (
@@ -21,12 +21,12 @@ const AppRouter = () => {
                                     </Suspense>
                                 }
                             />
-                        )
+                        );
                     })}
                 </Routes>
             </Suspense>
         </div>
-    )
-}
+    );
+};
 
-export default AppRouter
+export default AppRouter;

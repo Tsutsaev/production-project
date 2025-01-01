@@ -1,27 +1,33 @@
-import { classNames } from 'shared/lib/classNames/classNames'
-import cls from './Input.module.scss'
-import React, { type InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react'
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './Input.module.scss';
+import React, {
+    type InputHTMLAttributes,
+    memo,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
     'value' | 'onChange'
->
+>;
 
 interface InputProps extends HTMLInputProps {
-    className?: string
-    value?: string
-    onChange?: (value: string) => void
-    autoFocus?: boolean
+    className?: string;
+    value?: string;
+    onChange?: (value: string) => void;
+    autoFocus?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
-    const [isFocused, setIsFocused] = useState(false)
-    const [caretPosition, setCaretPosition] = useState(0)
-    const ref = useRef<HTMLInputElement>(null)
+    const [isFocused, setIsFocused] = useState(false);
+    const [caretPosition, setCaretPosition] = useState(0);
+    const ref = useRef<HTMLInputElement>(null);
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.value)
-        setCaretPosition(e.target.value.length)
-    }
+        onChange?.(e.target.value);
+        setCaretPosition(e.target.value.length);
+    };
     const {
         className,
         value,
@@ -30,24 +36,24 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autoFocus,
         ...otherProps
-    } = props
+    } = props;
 
     useEffect(() => {
         if (autoFocus) {
-            setIsFocused(true)
-            ref.current?.focus()
+            setIsFocused(true);
+            ref.current?.focus();
         }
-    }, [autoFocus])
+    }, [autoFocus]);
 
     const onBlur = () => {
-        setIsFocused(false)
-    }
+        setIsFocused(false);
+    };
     const onFocus = () => {
-        setIsFocused(true)
-    }
+        setIsFocused(true);
+    };
     const onSelect = (e: React.FocusEvent<HTMLInputElement>) => {
-        setCaretPosition(e?.target?.selectionStart || 0)
-    }
+        setCaretPosition(e?.target?.selectionStart || 0);
+    };
     return (
         <div className={classNames(cls.InputWrapper, {}, [className])}>
             {placeholder && (
@@ -75,6 +81,6 @@ export const Input = memo((props: InputProps) => {
                 )}
             </div>
         </div>
-    )
-})
-Input.displayName = 'Input'
+    );
+});
+Input.displayName = 'Input';

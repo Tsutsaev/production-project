@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { AppLink, AppLinkTheme } from './AppLink'
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
-import { Theme } from 'app/providers/ThemeProvider'
+import type { Meta, StoryObj } from '@storybook/react';
+import { AppLink, AppLinkTheme } from './AppLink';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from 'app/providers/ThemeProvider';
 
 const meta = {
     title: 'shared/AppLink',
@@ -9,10 +9,10 @@ const meta = {
     args: {
         to: '/',
     },
-} satisfies Meta<typeof AppLink>
+} satisfies Meta<typeof AppLink>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
     args: {
@@ -20,24 +20,24 @@ export const Primary: Story = {
         theme: AppLinkTheme.PRIMARY,
     },
     render: (args) => <AppLink {...args} />,
-}
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
+};
+Primary.decorators = [ThemeDecorator(Theme.LIGHT)];
 export const Secondary: Story = {
     args: {
         children: 'Text',
         theme: AppLinkTheme.SECONDARY,
     },
     render: (args) => <AppLink {...args} />,
-}
-Secondary.decorators = [ThemeDecorator(Theme.LIGHT)]
+};
+Secondary.decorators = [ThemeDecorator(Theme.LIGHT)];
 export const Red: Story = {
     args: {
         children: 'Text',
         theme: AppLinkTheme.RED,
     },
     render: (args) => <AppLink {...args} />,
-}
-Red.decorators = [ThemeDecorator(Theme.LIGHT)]
+};
+Red.decorators = [ThemeDecorator(Theme.LIGHT)];
 
 export const PrimaryDark: Story = {
     args: {
@@ -45,21 +45,21 @@ export const PrimaryDark: Story = {
         theme: AppLinkTheme.PRIMARY,
     },
     render: (args) => <AppLink {...args} />,
-}
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)]
+};
+PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 export const SecondaryDark: Story = {
     args: {
         children: 'Text',
         theme: AppLinkTheme.SECONDARY,
     },
     render: (args) => <AppLink {...args} />,
-}
-SecondaryDark.decorators = [ThemeDecorator(Theme.DARK)]
+};
+SecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
 export const RedDark: Story = {
     args: {
         children: 'Text',
         theme: AppLinkTheme.RED,
     },
     render: (args) => <AppLink {...args} />,
-}
-RedDark.decorators = [ThemeDecorator(Theme.DARK)]
+};
+RedDark.decorators = [ThemeDecorator(Theme.DARK)];
