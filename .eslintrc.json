@@ -56,7 +56,8 @@
         "@typescript-eslint/consistent-type-exports": "off",
         "@typescript-eslint/no-dynamic-delete": "off",
         "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/prefer-ts-expect-error": "off"
+        "@typescript-eslint/prefer-ts-expect-error": "off",
+        "@typescript-eslint/unbound-method": "off"
 
     },
     "globals": {
