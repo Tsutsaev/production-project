@@ -8,7 +8,7 @@ import 'app/styles/index.scss';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { loginReducer } from 'features/AuthByUserName/model/slice/loginSlice';
-import { DeepPartial } from 'app/providers/StoreProvider/config/StateSchema';
+import { DeepPartial } from 'app/types/global';
 
 const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
     loginForm: loginReducer,
@@ -18,13 +18,13 @@ const asyncReducers = { ...defaultAsyncReducers };
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-    <StoreProvider asyncReducers={asyncReducers}>
-        <BrowserRouter>
+    <BrowserRouter>
+        <StoreProvider asyncReducers={asyncReducers}>
             <ErrorBoundary>
                 <ThemeProvider>
                     <App />
                 </ThemeProvider>
             </ErrorBoundary>
-        </BrowserRouter>
-    </StoreProvider>,
+        </StoreProvider>
+    </BrowserRouter>,
 );

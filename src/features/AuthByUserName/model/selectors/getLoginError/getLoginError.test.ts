@@ -1,8 +1,8 @@
 import {
-    DeepPartial,
     StateSchema,
 } from 'app/providers/StoreProvider/config/StateSchema';
 import { getLoginError } from './getLoginError';
+import { DeepPartial } from 'app/types/global';
 
 describe('getLoadingError.test', () => {
     test('should return the error', () => {

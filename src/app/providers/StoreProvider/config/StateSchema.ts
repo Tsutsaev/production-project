@@ -6,21 +6,21 @@ import {
     Reducer,
     type ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { ProfileSchema } from 'entities/Profile';
+import { AxiosInstance } from 'axios/index';
+import type { To } from '@remix-run/router';
+import type { NavigateOptions } from 'react-router/dist/lib/context';
 
 type CombinedState<S> = {
     [K in keyof S]: S[K];
 };
-export type DeepPartial<T> = T extends object
-    ? {
-          [P in keyof T]?: DeepPartial<T[P]>;
-      }
-    : T;
 
 export interface StateSchema {
     user: UserSchema;
 
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
+    profile?: ProfileSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -33,4 +33,14 @@ export interface ReducerManager {
 }
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
     reducerManager: ReducerManager;
+}
+
+export interface ThunkExtraArg {
+    api: AxiosInstance;
+    navigate?: (to: To, options?: NavigateOptions) => void;
+}
+
+export interface ThunkConfig<T> {
+    rejectValue: T;
+    extra: ThunkExtraArg;
 }

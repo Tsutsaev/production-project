@@ -1,12 +1,11 @@
-@use "reset";
-@use "variables/global";
-@use "themes/normal";
-@use "themes/dark";
+@use 'reset';
+@use 'variables/global';
+@use 'themes/normal';
+@use 'themes/dark';
 
 body {
-    font:var(--font-m);
+    font: var(--font-m);
     color: var(--primary-color);
-    
 }
 
 .app {

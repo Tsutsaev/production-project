@@ -1,8 +1,8 @@
 import {
-    DeepPartial,
     StateSchema,
 } from 'app/providers/StoreProvider/config/StateSchema';
 import { getLoginUsername } from './getLoginUsername';
+import { DeepPartial } from 'app/types/global';
 
 describe('getLoginUsername.test', () => {
     test('should return username', () => {

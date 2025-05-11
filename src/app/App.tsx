@@ -4,8 +4,9 @@ import { AppRouter } from './providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { Suspense, useEffect } from 'react';
-import { useAppDispatch } from 'app/hooks/useApp';
+import { useAppDispatch } from 'app/hooks/useAppDispatch';
 import { userActions } from 'entities/User';
+import { useNavigate } from 'react-router';
 
 const App = () => {
     const { theme } = useTheme();

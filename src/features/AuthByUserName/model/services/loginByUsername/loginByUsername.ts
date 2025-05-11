@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { User, userActions } from 'entities/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 
 interface loginByUsernameProps {
     username: string;
@@ -14,27 +14,28 @@ function isUser(data: any): data is User {
     );
 }
 
-export const loginByUsername = createAsyncThunk<User, loginByUsernameProps>(
-    'login/loginByUsername',
-    async (authData, thunkAPI) => {
-        try {
-            const response = await axios.post(
-                'http://localhost:8000/login',
-                authData,
-                { withCredentials: true },
-            );
-            if (!response.data || !isUser(response.data)) {
-                throw new Error('Invalid data');
-            }
-            localStorage.setItem(
-                USER_LOCALSTORAGE_KEY,
-                JSON.stringify(response.data),
-            );
-            thunkAPI.dispatch(userActions.setAuthData(response.data));
-            return response.data;
-        } catch (error) {
-            console.log(error);
-            return thunkAPI.rejectWithValue('Error');
+export const loginByUsername = createAsyncThunk<
+    User,
+    loginByUsernameProps,
+    ThunkConfig<string>
+>('login/loginByUsername', async (authData, thunkAPI) => {
+    const { extra, dispatch, rejectWithValue } = thunkAPI;
+    try {
+        const response = await extra.api.post<User>('/login', authData, {
+            withCredentials: true,
+        });
+        if (!response.data || !isUser(response.data)) {
+            throw new Error('Invalid data');
         }
-    },
-);
+        localStorage.setItem(
+            USER_LOCALSTORAGE_KEY,
+            JSON.stringify(response.data),
+        );
+        dispatch(userActions.setAuthData(response.data));
+
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return rejectWithValue('Error');
+    }
+});

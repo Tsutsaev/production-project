@@ -3,7 +3,6 @@ const jsonServer = require('json-server');
 const path = require('path');
 const cors = require('cors');
 
-
 const server = jsonServer.create();
 
 server.use(
@@ -33,7 +32,9 @@ server.use(async (req, res, next) => {
 server.post('/login', (req, res) => {
     try {
         const { username, password } = req.body;
-        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const db = JSON.parse(
+            fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'),
+        );
         const { users = [] } = db;
 
         const userFromBd = users.find(

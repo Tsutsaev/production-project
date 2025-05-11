@@ -6,7 +6,7 @@ import { Input } from 'shared/ui/Input/Input';
 import { memo, useCallback, useEffect } from 'react';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
-import { useAppDispatch, useAppSelector } from 'app/hooks/useApp';
+import { useAppDispatch, useAppSelector } from 'app/hooks/useAppDispatch';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
@@ -19,11 +19,12 @@ import {
 
 export interface LoginFormProps {
     className?: string;
+    onSuccess: () => void;
 }
 const initialReducers: ReducersList = {
     loginForm: loginReducer,
 };
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const username = useAppSelector(getLoginUsername);
@@ -45,9 +46,12 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         [dispatch],
     );
 
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }));
-    }, [dispatch, password, username]);
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(loginByUsername({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [onSuccess, dispatch, password, username]);
 
     return (
         <DynamicModuleLoader

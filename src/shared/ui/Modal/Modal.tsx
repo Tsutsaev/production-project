@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import {
     useState,
@@ -18,6 +18,7 @@ interface ModalProps {
     lazy?: boolean;
 }
 const ANIMATION_DELAY = 300;
+
 export const Modal = (props: ModalProps) => {
     const { className, children, isOpen, onClose, lazy } = props;
     const [isMounted, setIsMounted] = useState(false);
@@ -62,7 +63,7 @@ export const Modal = (props: ModalProps) => {
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };
