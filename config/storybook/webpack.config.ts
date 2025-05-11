@@ -11,35 +11,34 @@ export default ({ config }: { config: webpack.Configuration }) => {
         entry: '',
         src: path.resolve(__dirname, '..', '..', 'src'),
     };
-    config.plugins.push(
+    config!.plugins!.push(
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(true), // Или false, если нужно
             __API__: JSON.stringify(''),
         }),
     );
     // Добавляем путь для src в modules
-    config.resolve.modules.push(paths.src);
+    config!.resolve!.modules!.push(paths.src);
 
     // Добавляем расширения .ts и .tsx
-    config.resolve.extensions.push('.ts', '.tsx');
+    config!.resolve!.extensions!.push('.ts', '.tsx');
 
     // Добавляем алиасы
-    config.resolve.alias = {
-        ...(config.resolve.alias || {}),
+    config!.resolve!.alias = {
+        ...(config!.resolve!.alias || {}),
         entities: path.resolve(__dirname, '..', '..', 'src', 'entities'),
     };
 
     // Обработка правил модулей
-    config.module.rules = config.module.rules.map((rule: RuleSetRule) => {
-        if (/svg/.test(rule.test as string)) {
-            return { ...rule, exclude: /\.svg$/i };
-        }
-
-        return rule;
-    });
+    const rules = config.module!.rules as RuleSetRule[];
+    config.module!.rules = rules.map((rule) => (
+        /svg/.test(rule.test as string)
+            ? { ...rule, exclude: /\.svg$/i }
+            : rule
+    ));
 
     // Добавляем правила для tsx и svg
-    config.module.rules.push(
+    config!.module!.rules.push(
         {
             test: /\.tsx?$/, // Для обработки TypeScript
             use: 'ts-loader',
@@ -52,7 +51,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
     );
 
     // Добавляем CSS loader
-    config.module.rules.push(buildCssLoader(true));
+    config!.module!.rules.push(buildCssLoader(true));
 
     return config;
 };
