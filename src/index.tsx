@@ -16,7 +16,7 @@ const defaultAsyncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
 
 const asyncReducers = { ...defaultAsyncReducers };
 
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
 root.render(
     <BrowserRouter>
         <StoreProvider asyncReducers={asyncReducers}>
