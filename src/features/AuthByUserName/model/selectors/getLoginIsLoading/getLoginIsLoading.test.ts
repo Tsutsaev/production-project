@@ -2,7 +2,7 @@ import {
     StateSchema,
 } from 'app/providers/StoreProvider/config/StateSchema';
 import { getLoginIsLoading } from './getLoginIsLoading';
-import { DeepPartial } from 'app/types/global';
+import { DeepPartial } from 'shared/types/common';
 
 describe('getLoginIsLoading.test', () => {
     test('should return the true', () => {

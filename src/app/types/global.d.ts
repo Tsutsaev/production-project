@@ -3,6 +3,7 @@ declare module '*.scss' {
     const classNames: IClassNames;
     export = classNames;
 }
+
 declare module '*.svg' {
     const SVG: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
     export default SVG;
@@ -11,8 +12,8 @@ declare module '*.svg' {
 declare const __IS_DEV__: boolean;
 declare const __API__: string;
 
-export type DeepPartial<T> = T extends object
-    ? {
-          [P in keyof T]?: DeepPartial<T[P]>;
-      }
-    : T;
+// export type DeepPartial<T> = T extends object
+//     ? {
+//           [P in keyof T]?: DeepPartial<T[P]>;
+//       }
+//     : T;

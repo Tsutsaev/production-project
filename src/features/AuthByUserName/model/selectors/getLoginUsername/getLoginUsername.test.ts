@@ -2,7 +2,7 @@ import {
     StateSchema,
 } from 'app/providers/StoreProvider/config/StateSchema';
 import { getLoginUsername } from './getLoginUsername';
-import { DeepPartial } from 'app/types/global';
+import { DeepPartial } from 'shared/types/common';
 
 describe('getLoginUsername.test', () => {
     test('should return username', () => {

@@ -2,7 +2,7 @@ import {
     StateSchema,
 } from 'app/providers/StoreProvider/config/StateSchema';
 import { getLoginError } from './getLoginError';
-import { DeepPartial } from 'app/types/global';
+import { DeepPartial } from 'shared/types/common';
 
 describe('getLoadingError.test', () => {
     test('should return the error', () => {

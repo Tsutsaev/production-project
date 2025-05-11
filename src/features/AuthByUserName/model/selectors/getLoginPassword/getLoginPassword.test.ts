@@ -2,7 +2,7 @@ import {
     StateSchema,
 } from 'app/providers/StoreProvider/config/StateSchema';
 import { getLoginPassword } from './getLoginPassword';
-import { DeepPartial } from 'app/types/global';
+import { DeepPartial } from 'shared/types/common';
 
 describe('getLoginPassword.test', () => {
     test('should return value', () => {
