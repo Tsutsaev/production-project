@@ -5,7 +5,6 @@ import { createReducerManager } from 'app/providers/StoreProvider/config/reducer
 import { $api } from 'shared/api/api';
 import type { To } from '@remix-run/router';
 import type { NavigateOptions } from 'react-router/dist/lib/context';
-import { __IS_DEV__ } from 'app/types/global';
 
 export function createReduxStore(
     initialState?: StateSchema,
