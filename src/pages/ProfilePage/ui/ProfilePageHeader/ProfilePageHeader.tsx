@@ -4,7 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { Text } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch, useAppSelector } from 'app/hooks/useAppDispatch';
-import { getProfileReadOnly, profileActions } from 'entities/Profile';
+import {
+    getProfileReadOnly,
+    profileActions,
+    updateProfileData,
+} from 'entities/Profile';
 import { useCallback } from 'react';
 
 interface ProfilePageHeaderProps {
@@ -25,7 +29,7 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
     }, [dispatch]);
 
     const onSave = useCallback(() => {
-        dispatch(profileActions.cancelEdit());
+        dispatch(updateProfileData());
     }, [dispatch]);
 
     return (

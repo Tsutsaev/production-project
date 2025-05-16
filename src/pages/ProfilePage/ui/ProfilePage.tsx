@@ -11,7 +11,9 @@ import {
     ProfileCard,
     profileReducer,
     fetchProfileData,
-    profileActions, getProfileReadOnly, getProfileForm,
+    profileActions,
+    getProfileReadOnly,
+    getProfileForm,
 } from 'entities/Profile';
 import { useAppDispatch, useAppSelector } from 'app/hooks/useAppDispatch';
 import { useCallback, useEffect } from 'react';
@@ -30,7 +32,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     const formData = useAppSelector(getProfileForm);
     const isLoading = useAppSelector(getProfileIsLoading);
     const error = useAppSelector(getProfileError);
-    const readOnly = useAppSelector(getProfileReadOnly );
+    const readOnly = useAppSelector(getProfileReadOnly);
 
     useEffect(() => {
         dispatch(fetchProfileData());
@@ -48,6 +50,19 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         },
         [dispatch],
     );
+    const onChangeCity = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ city: value || '' }));
+        },
+        [dispatch],
+    );
+
+    const onChangeAge = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
+        },
+        [dispatch],
+    );
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(' ', {}, [className])}>
@@ -56,9 +71,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                     data={formData}
                     isLoading={isLoading}
                     error={error}
-                    readOnly={readOnly }
+                    readOnly={readOnly}
                     onChangeLastname={onChangeLastname}
                     onChangeFirstname={onChangeFirstname}
+                    onChangeCity={onChangeCity}
+                    onChangeAge={onChangeAge}
                 />
             </div>
         </DynamicModuleLoader>
