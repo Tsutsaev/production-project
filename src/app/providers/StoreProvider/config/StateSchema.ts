@@ -5,6 +5,7 @@ import {
     EnhancedStore,
     Reducer,
     type ReducersMapObject,
+    ThunkDispatch,
 } from '@reduxjs/toolkit';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios/index';
@@ -45,3 +46,9 @@ export interface ThunkConfig<T> {
     extra: ThunkExtraArg;
     state: StateSchema;
 }
+
+export type AppDispatch = ThunkDispatch<
+    StateSchema,
+    ThunkExtraArg,
+    Action<string>
+>;

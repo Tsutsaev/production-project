@@ -1,12 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
     getProfileError,
-    getProfileData,
     getProfileIsLoading,
     ProfileCard,
     profileReducer,
@@ -27,7 +25,6 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
-    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const formData = useAppSelector(getProfileForm);
     const isLoading = useAppSelector(getProfileIsLoading);

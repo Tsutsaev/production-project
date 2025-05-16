@@ -1,6 +1,6 @@
 import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
-import { type StateSchema, ThunkExtraArg } from './StateSchema';
+import { type StateSchema, ThunkExtraArg, AppDispatch } from './StateSchema';
 import { createReducerManager } from 'app/providers/StoreProvider/config/reducerManager';
 import { $api } from 'shared/api/api';
 import type { To } from '@remix-run/router';
@@ -43,4 +43,3 @@ export function createReduxStore(
 const tempStore = createReduxStore();
 
 export type RootState = ReturnType<typeof tempStore.getState>;
-export type AppDispatch = typeof tempStore.dispatch;
