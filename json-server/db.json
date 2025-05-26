@@ -1,21 +1,43 @@
 {
-    "posts": [
-        { "id": "1", "title": "a title", "views": 100 },
-        { "id": "2", "title": "another title", "views": 200 }
-    ],
-    "users": [{ "id": "1", "username": "admin", "password": "123" }],
-    "comments": [
-        { "id": "1", "text": "a comment about post 1", "postId": "1" },
-        { "id": "2", "text": "another comment about post 1", "postId": "1" }
-    ],
-    "profile": {
-        "first": "Djamalayl",
-        "lastname": "Tsutsaev",
-        "age": 23,
-        "currency": "RUB",
-        "country": "Russia",
-        "city": "Urus-Martan",
-        "username": "admin",
-        "avatar": "https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "first": "Djamalayl",
+    "lastname": "Tsutsaev",
+    "age": 23,
+    "currency": "RUB",
+    "country": "Belarus",
+    "city": "Urus-Martan",
+    "username": "admin",
+    "avatar": "https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
+  }
 }

@@ -15,6 +15,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(true), // Или false, если нужно
             __API__: JSON.stringify(''),
+            __PROJECT__: JSON.stringify('storybook'),
         }),
     );
     // Добавляем путь для src в modules

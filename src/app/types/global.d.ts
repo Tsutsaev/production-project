@@ -4,6 +4,11 @@ declare module '*.scss' {
     export = classNames;
 }
 
+declare module '*.jpg' {
+    const content: string;
+    export default content;
+}
+
 declare module '*.svg' {
     const SVG: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
     export default SVG;
@@ -11,4 +16,5 @@ declare module '*.svg' {
 
 declare const __IS_DEV__: boolean;
 declare const __API__: string;
+declare const __PROJECT__: 'storybook' | 'frontend' | 'jest';
 
