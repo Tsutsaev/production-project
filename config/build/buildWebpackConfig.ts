@@ -16,6 +16,7 @@ export function buidWebpackConfig(
             filename: '[name][contanthash].js',
             path: paths.build,
             clean: true,
+            publicPath: '/',
         },
         plugins: buildPlugins(options),
         module: {

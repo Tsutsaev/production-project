@@ -4,13 +4,13 @@ import { AppRouter } from './providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { Suspense, useEffect } from 'react';
-import { useAppDispatch } from 'app/hooks/useAppDispatch';
-import { userActions } from 'entities/User';
-import { useNavigate } from 'react-router';
+import { useAppDispatch, useAppSelector } from 'app/hooks/useAppDispatch';
+import { getUserInited, userActions } from 'entities/User';
 
 const App = () => {
     const { theme } = useTheme();
     const dispatch = useAppDispatch();
+    const inited = useAppSelector(getUserInited);
 
     useEffect(() => {
         dispatch(userActions.initAuthData());
@@ -22,7 +22,7 @@ const App = () => {
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />
-                    <AppRouter />
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>

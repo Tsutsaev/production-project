@@ -11,6 +11,7 @@ import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios/index';
 import type { To } from '@remix-run/router';
 import type { NavigateOptions } from 'react-router/dist/lib/context';
+import { ArticleDetailsSchema } from "entities/Article";
 
 type CombinedState<S> = {
     [K in keyof S]: S[K];
@@ -22,6 +23,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
+    articleDetails?: ArticleDetailsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
