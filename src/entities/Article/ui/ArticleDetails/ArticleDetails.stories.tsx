@@ -5,9 +5,10 @@ import {
     ArticleBlockType,
     ArticleType,
 } from 'entities/Article/model/types/article';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 
 const meta = {
-    title: 'shared/ArticleDetails',
+    title: 'entities/ArticleDetails',
     component: ArticleDetails,
 } satisfies Meta<typeof ArticleDetails>;
 
@@ -48,12 +49,54 @@ const article: Article = {
         },
     ],
 };
+
 export const Normal: Story = {
     args: {
-        articleDetails: {
-            data: article,
-        },
+        id: '1',
     },
+    decorators: [
+        StoreDecorator(
+            {
+                articleDetails: {
+                    data: article,
+                },
+            },
+            {},
+        ),
+    ],
     render: (args) => <ArticleDetails {...args} />,
 };
-Normal.decorators = [];
+
+export const Loading: Story = {
+    args: {
+        id: '1',
+    },
+    decorators: [
+        StoreDecorator(
+            {
+                articleDetails: {
+                    isLoading: true,
+                },
+            },
+            {},
+        ),
+    ],
+    render: (args) => <ArticleDetails {...args} />,
+};
+
+export const Error: Story = {
+    args: {
+        id: '1',
+    },
+    decorators: [
+        StoreDecorator(
+            {
+                articleDetails: {
+                    error: 'error',
+                },
+            },
+            {},
+        ),
+    ],
+    render: (args) => <ArticleDetails {...args} />,
+};

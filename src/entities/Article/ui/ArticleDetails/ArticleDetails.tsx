@@ -44,7 +44,9 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     const error = useAppSelector(getArticleDetailsError);
 
     useEffect(() => {
-        dispatch(fetchArticleById(id));
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticleById(id));
+        }
     }, [dispatch, id]);
 
     const renderBlock = useCallback((block: ArticleBlock) => {
@@ -53,7 +55,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
                 return (
                     <ArticleCodeBlockComponent
                         key={block.id}
-                    block={block}
+                        block={block}
                         className={cls.block}
                     />
                 );
@@ -130,7 +132,6 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
             </>
         );
     }
-
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ArticleDetails, {}, [className])}>
