@@ -1,7 +1,8 @@
-import type { StorybookConfig } from '@storybook/react-webpack5'
+import type { StorybookConfig } from '@storybook/react-webpack5';
 
 const config: StorybookConfig = {
     stories: ['../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
@@ -9,14 +10,14 @@ const config: StorybookConfig = {
         '@storybook/addon-interactions',
         '@storybook/addon-styling-webpack',
     ],
+
     framework: {
         name: '@storybook/react-webpack5',
         options: {
-            builder: {
-                useSWC: true,
-            },
+            builder: {},
         },
     },
+
     swc: () => ({
         jsc: {
             transform: {
@@ -26,8 +27,13 @@ const config: StorybookConfig = {
             },
         },
     }),
+
     docs: {
         autodocs: 'tag',
     },
-}
-export default config
+
+    typescript: {
+        reactDocgen: 'react-docgen-typescript',
+    },
+};
+export default config;

@@ -1,31 +1,31 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Button, ButtonSize, ButtonTheme } from './Button'
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
-import { Theme } from 'app/providers/ThemeProvider'
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button, ButtonSize, ButtonTheme } from './Button';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from 'app/providers/ThemeProvider';
 
 const meta = {
     title: 'shared/Button',
     component: Button,
-} satisfies Meta<typeof Button>
+} satisfies Meta<typeof Button>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
     args: {
         children: 'Text',
     },
     render: (args) => <Button {...args} />,
-}
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
+};
+Primary.decorators = [ThemeDecorator(Theme.LIGHT)];
 export const Clear: Story = {
     args: {
         children: 'Text',
         theme: ButtonTheme.CLEAR,
     },
     render: (args) => <Button {...args} />,
-}
-Clear.decorators = [ThemeDecorator(Theme.LIGHT)]
+};
+Clear.decorators = [ThemeDecorator(Theme.LIGHT)];
 
 export const ClearInverted: Story = {
     args: {
@@ -33,8 +33,8 @@ export const ClearInverted: Story = {
         theme: ButtonTheme.CLEAR_INVERTED,
     },
     render: (args) => <Button {...args} />,
-}
-ClearInverted.decorators = [ThemeDecorator(Theme.LIGHT)]
+};
+ClearInverted.decorators = [ThemeDecorator(Theme.LIGHT)];
 
 export const Outlined: Story = {
     args: {
@@ -42,7 +42,7 @@ export const Outlined: Story = {
         theme: ButtonTheme.OUTLINE,
     },
     render: (args) => <Button {...args} />,
-}
+};
 export const OutlinedSizeL: Story = {
     args: {
         children: 'Text',
@@ -50,7 +50,7 @@ export const OutlinedSizeL: Story = {
         size: ButtonSize.L,
     },
     render: (args) => <Button {...args} />,
-}
+};
 export const OutlinedSizeXL: Story = {
     args: {
         children: 'Text',
@@ -58,8 +58,8 @@ export const OutlinedSizeXL: Story = {
         size: ButtonSize.XL,
     },
     render: (args) => <Button {...args} />,
-}
-Outlined.decorators = [ThemeDecorator(Theme.LIGHT)]
+};
+Outlined.decorators = [ThemeDecorator(Theme.LIGHT)];
 
 export const OutlinedDark: Story = {
     args: {
@@ -67,8 +67,8 @@ export const OutlinedDark: Story = {
         theme: ButtonTheme.OUTLINE,
     },
     render: (args) => <Button {...args} />,
-}
-OutlinedDark.decorators = [ThemeDecorator(Theme.DARK)]
+};
+OutlinedDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const BackgroundTheme: Story = {
     args: {
@@ -76,14 +76,14 @@ export const BackgroundTheme: Story = {
         theme: ButtonTheme.BACKGROUND,
     },
     render: (args) => <Button {...args} />,
-}
+};
 export const BackgroundInverted: Story = {
     args: {
         children: 'Text',
         theme: ButtonTheme.BACKGROUND_INVERTED,
     },
     render: (args) => <Button {...args} />,
-}
+};
 export const Square: Story = {
     args: {
         children: '>',
@@ -91,7 +91,7 @@ export const Square: Story = {
         square: true,
     },
     render: (args) => <Button {...args} />,
-}
+};
 export const SquareSizeL: Story = {
     args: {
         children: '>',
@@ -100,7 +100,7 @@ export const SquareSizeL: Story = {
         size: ButtonSize.L,
     },
     render: (args) => <Button {...args} />,
-}
+};
 
 export const SquareSizeXL: Story = {
     args: {
@@ -110,4 +110,13 @@ export const SquareSizeXL: Story = {
         size: ButtonSize.XL,
     },
     render: (args) => <Button {...args} />,
-}
+};
+
+export const Disabled: Story = {
+    args: {
+        children: '>',
+        theme: ButtonTheme.OUTLINE,
+        disabled: true,
+    },
+    render: (args) => <Button {...args} />,
+};

@@ -1,12 +1,12 @@
-@import "reset";
-@import "variables/global";
-@import "themes/normal";
-@import "themes/dark";
+@use 'reset';
+@use 'variables/global';
+@use 'themes/normal';
+@use 'themes/dark';
+@use 'themes/orange';
 
 body {
-    font:var(--font-m);
+    font: var(--font-m);
     color: var(--primary-color);
-    
 }
 
 .app {
@@ -20,5 +20,8 @@ body {
 
 .page-wrapper {
     flex-grow: 1;
-    padding: 20px;
+    padding: 20px 20px 20px 45px;
+    height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    width: 100%;
 }

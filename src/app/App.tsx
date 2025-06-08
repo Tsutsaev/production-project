@@ -1,24 +1,32 @@
-import { classNames } from 'shared/lib/classNames/classNames'
-import { useTheme } from './providers/ThemeProvider'
-import { AppRouter } from './providers/router'
-import { Navbar } from 'widgets/Navbar'
-import { Sidebar } from 'widgets/Sidebar'
-import { Suspense } from 'react'
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useTheme } from './providers/ThemeProvider';
+import { AppRouter } from './providers/router';
+import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
+import { Suspense, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from 'app/hooks/useAppDispatch';
+import { getUserInited, userActions } from 'entities/User';
 
 const App = () => {
-    const { theme } = useTheme()
+    const { theme } = useTheme();
+    const dispatch = useAppDispatch();
+    const inited = useAppSelector(getUserInited);
+
+    useEffect(() => {
+        dispatch(userActions.initAuthData());
+    }, [dispatch]);
 
     return (
-        <div className={classNames('app', {}, [theme as string])}>
+        <div className={classNames('app', {}, [theme])}>
             <Suspense fallback="">
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />
-                    <AppRouter />
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;

@@ -1,0 +1,98 @@
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './LoginForm.module.scss';
+import { useTranslation } from 'react-i18next';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/Input';
+import { memo, useCallback, useEffect } from 'react';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import { loginByUsername } from 'features/AuthByUserName/model/services/loginByUsername/loginByUsername';
+import { useAppDispatch, useAppSelector } from 'app/hooks/useAppDispatch';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+
+export interface LoginFormProps {
+    className?: string;
+    onSuccess: () => void;
+}
+const initialReducers: ReducersList = {
+    loginForm: loginReducer,
+};
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const username = useAppSelector(getLoginUsername);
+    const password = useAppSelector(getLoginPassword);
+    const isLoading = useAppSelector(getLoginIsLoading);
+    const error = useAppSelector(getLoginError);
+
+    const onChangeUsernmae = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setUsername(value));
+        },
+        [dispatch],
+    );
+
+    const onChangePassword = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setPassword(value));
+        },
+        [dispatch],
+    );
+
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(loginByUsername({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [onSuccess, dispatch, password, username]);
+
+    return (
+        <DynamicModuleLoader
+            removeAfterUnmount={true}
+            reducers={initialReducers}
+        >
+            <div className={classNames(cls.LoginForm, {}, [className])}>
+                <Text title={t('Форма авторизации')} />
+
+                {error && (
+                    <Text
+                        text={t('Неверный логин или пароль')}
+                        theme={TextTheme.ERROR}
+                    />
+                )}
+                <Input
+                    autoFocus
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите username')}
+                    onChange={onChangeUsernmae}
+                    value={username}
+                />
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите пароль')}
+                    onChange={onChangePassword}
+                    value={password}
+                />
+                <Button
+                    onClick={onLoginClick}
+                    className={cls.loginBtn}
+                    theme={ButtonTheme.OUTLINE}
+                    disabled={isLoading}
+                >
+                    {t('Войти')}
+                </Button>
+            </div>
+        </DynamicModuleLoader>
+    );
+});
+
+export default LoginForm;

@@ -3,8 +3,8 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type { Config } from 'jest'
-import path from 'path'
+import { Config } from 'jest';
+import path from 'path';
 
 const config: Config = {
     // All imported modules in your tests should be mocked automatically
@@ -19,6 +19,8 @@ const config: Config = {
     // Automatically clear mock calls, instances, contexts and results before every test
     globals: {
         __IS_DEV__: true,
+        __API__: '',
+        __PROJECT__: 'jest',
     },
     clearMocks: true,
     testEnvironment: 'jsdom',
@@ -42,6 +44,7 @@ const config: Config = {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
         '^shared/(.*)$': '<rootDir>/src/shared/$1',
+        '^entities/(.*)$': '<rootDir>/src/entities/$1',
     },
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
@@ -194,6 +197,6 @@ const config: Config = {
 
     // Whether to use watchman for file crawling
     // watchman: true,
-}
+};
 
-export default config
+export default config;

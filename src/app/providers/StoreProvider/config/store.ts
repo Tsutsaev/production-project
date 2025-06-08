@@ -1,13 +1,45 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { counterReducer } from '../../../../entities/Counter/model/slice/counterSlice'
-import { type StateSchema } from './StateSchema'
+import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit';
+import { userReducer } from 'entities/User';
+import { type StateSchema, ThunkExtraArg, AppDispatch } from './StateSchema';
+import { createReducerManager } from 'app/providers/StoreProvider/config/reducerManager';
+import { $api } from 'shared/api/api';
+import type { To } from '@remix-run/router';
+import type { NavigateOptions } from 'react-router/dist/lib/context';
 
-export function createReduxStore(initialState?: StateSchema) {
-    return configureStore<StateSchema>({
-        reducer: {
-            counter: counterReducer,
-        },
+export function createReduxStore(
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
+    navigate?: (to: To, options?: NavigateOptions) => void,
+) {
+    const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
+        user: userReducer,
+    };
+    const reducerManager = createReducerManager(rootReducers);
+
+    const extraArg: ThunkExtraArg = {
+        api: $api,
+        navigate,
+    };
+    const store = configureStore({
+        // @ts-ignore
+        reducer: reducerManager.reduce as ReducersMapObject,
         devTools: __IS_DEV__,
         preloadedState: initialState,
-    })
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: extraArg,
+                },
+            }),
+    });
+
+    // @ts-ignore
+    store.reducerManager = reducerManager;
+    return store;
 }
+
+// Создаем временный store для получения типов RootState и AppDispatch
+const tempStore = createReduxStore();
+
+export type RootState = ReturnType<typeof tempStore.getState>;
